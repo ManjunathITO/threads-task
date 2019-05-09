@@ -1,0 +1,96 @@
+package training_Collection;
+import java.util.*;
+import java.util.Scanner;
+
+public class numtowords_task
+{
+	static String one[] = {"", "one ", "two ", "three ", "four ", 
+	        "five ", "six ", "seven ", "eight ", 
+	        "nine ", "ten ", "eleven ", "twelve ", 
+	        "thirteen ", "fourteen ", "fifteen ", 
+	        "sixteen ", "seventeen ", "eighteen ", 
+	        "nineteen "
+	    }; 
+	static String ten[] = {"", "", "twenty ", "thirty ", "forty ", 
+	        "fifty ", "sixty ", "seventy ", "eighty ", 
+	        "ninety "
+	    }; 
+	
+
+	
+	public static void main(String[] args) {
+		
+	
+	Scanner obj = new Scanner(System.in);
+	System.out.println("enter the number ");
+	long n = obj.nextLong();
+	
+	System.out.println(convertowords(n));
+	}
+	
+
+	
+	static String convertowords(long n)
+{
+		// TODO Auto-generated method stub
+	String out ="";
+	
+	// handles digits at ten millions and hundred  
+    // millions places (if any)  
+    out += numToWords((int) (n / 10000000), "crore "); 
+
+    // handles digits at hundred thousands and one  
+    // millions places (if any)  
+    out += numToWords((int) ((n / 100000) % 100), "lakh "); 
+
+    // handles digits at thousands and tens thousands  
+    // places (if any)  
+    out += numToWords((int) ((n / 1000) % 100), "thousand "); 
+
+    // handles digit at hundreds places (if any)  
+    out += numToWords((int) ((n / 100) % 10), "hundred "); 
+
+    if (n > 100 && n % 100 > 0) { 
+        out += "and "; 
+    } 
+
+    // handles digits at ones and tens places (if any)  
+    out += numToWords((int) (n % 100), ""); 
+
+    return out;
+		
+}
+
+
+
+ static String numToWords(int n, String s)
+{
+	// TODO Auto-generated method stub
+	 
+	 
+	        String str = ""; 
+	        // if n is more than 19, divide it  
+	        if (n > 19) { 
+	            str += ten[n / 10] + one[n % 10]; 
+	        } else { 
+	            str += one[n]; 
+	        } 
+	  
+	        // if n is non-zero  
+	        if (n != 0) { 
+	            str += s; 
+	        } 
+	  
+	        return str; 
+	    } 
+	
+}
+
+
+output
+enter the number 
+24623
+twenty four thousand six hundred and twenty three 	
+
+
+
